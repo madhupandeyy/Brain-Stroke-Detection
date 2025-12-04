@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result | Skin Cancer Detection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Hind', sans-serif;
+      background: linear-gradient(to bottom right, #e1bee7, #d1c4e9, #ce93d8);
+      background-attachment: fixed;
+      padding-bottom: 80px; /* Space for footer */
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 3rem auto 2rem;
+      padding: 1rem;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card h3, .card h4 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .main-prediction {
+      background-color: #ffecb3;
+      font-size: 1.8rem;
+      color: #4a148c;
+      font-weight: 600;
+    }
+
+    .disease-details ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    .disease-details ul li {
+      margin: 0.5rem 0;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      color: #6a1b9a;
+    }
+
+    .normal-message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .output-image {
+      display: block;
+      margin: 2rem auto;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      color: #4a148c;
+      font-size: 0.95rem;
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 1.5rem; }
+    }
+
+    .hospital-list, .treatment-list {
+      margin-left: 1.2rem;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Prediction Result -->
+    <div class="card main-prediction">
+      <h3>{{ prediction }}</h3>
+    </div>
+
+    {% if prediction != "Normal" %}
+    <!-- Disease Details -->
+    <div class="card disease-details">
+      <h4>Disease Details</h4>
+      <ul>
+        <li><strong>Disease:</strong> {{ prediction }}</li>
+        <li><strong>Cause:</strong> {{ cause }}</li>
+        <li><strong>Treatment:</strong> {{ treatment }}</li>
+
+        <li class="section-title">Alternative & Complementary Medicine</li>
+        <li><strong>Homeopathy:</strong> {{ homeopathy }}</li>
+        <li><strong>Allopathy:</strong> {{ allopathy }}</li>
+        <li><strong>Ayurveda:</strong> {{ ayurveda }}</li>
+
+        <li class="section-title">Hospitals</li>
+        <li><strong>India:</strong> {{ india_hospitals }}</li>
+        <li><strong>USA:</strong> {{ usa_hospitals }}</li>
+
+        <li class="section-title">Cost & Success Rate</li>
+        <li><strong>Cost in India:</strong> {{ cost_india }}</li>
+        <li><strong>Cost in USA:</strong> {{ cost_usa }}</li>
+        <li><strong>Success Rate:</strong> {{ success_rate }}</li>
+      </ul>
+    </div>
+    {% else %}
+    <!-- Healthy Message -->
+    <div class="card">
+      <h4 class="normal-message">Great News!</h4>
+      <p style="text-align:center; color:#333;">You are healthy. Keep up the great care!</p>
+    </div>
+    {% endif %}
+
+    <!-- Output Image -->
+    <img src="{{ url_for('static', filename='output_image.png') }}" alt="Output Image" class="output-image">
+
+  </div>
+  <div style="text-align:center; margin-top:2rem;">
+  <a href="/disease-predict2">
+    <button style="background:#7b1fa2; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">
+      Back to Capture
+    </button>
+  </a>
+</div>
+
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 — Skin Cancer Detection System using Deep Learning
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+patient_id,breast_cancer,cervical_cancer,ovarian_cancer,date
+med1,benign,High squamous intra-epithelial lesion,HGSC,2025-06-03
+smartai,normal,,,2025-06-09
+med23,malignant,Type_1,CC,2025-06-01

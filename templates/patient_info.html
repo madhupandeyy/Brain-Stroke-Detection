@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Info Lookup</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #f3e5f5);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #673ab7;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            background: #4a148c;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #4a148c;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #43a047;
+        }
+
+        .info {
+            background-color: #f3e5f5;
+            border-left: 5px solid #8e24aa;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 8px;
+        }
+
+        .field {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .field strong {
+            color: #6a1b9a;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            color: #4a148c;
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+         Patient Dashboard
+    </div>
+
+    <div class="container">
+        <h2>Search Patient Information</h2>
+
+        <form method="POST" action="{{ url_for('get_patient_info') }}">
+            <label for="patient_id">Enter Patient ID:</label>
+            <input type="text" name="patient_id" id="patient_id" placeholder="e.g., PAT1234" required>
+            <button type="submit">Fetch Info</button>
+        </form>
+
+        {% if data %}
+        <div class="info">
+            <div class="field"><strong>Patient ID:</strong> {{ data.patient_id }}</div>
+            <div class="field"><strong>Skin Cancer:</strong> {{ data.brain_stroke_status }}</div>
+            <div class="field"><strong>Last Updated:</strong> {{ data.date }}</div>
+
+            <div class="section-title">Medical Details</div>
+            <div class="field"><strong>Cause:</strong> {{ data.cause }}</div>
+            <div class="field"><strong>Treatment:</strong> {{ data.treatment }}</div>
+
+            <div class="section-title">Alternative & Complementary Medicine</div>
+            <div class="field"><strong>Homeopathy:</strong> {{ data.homeopathy }}</div>
+            <div class="field"><strong>Allopathy:</strong> {{ data.allopathy }}</div>
+            <div class="field"><strong>Ayurveda:</strong> {{ data.ayurveda }}</div>
+
+            <div class="section-title">Hospitals</div>
+            <div class="field"><strong>India:</strong> {{ data.india_hospitals }}</div>
+            <div class="field"><strong>USA:</strong> {{ data.usa_hospitals }}</div>
+
+            <div class="section-title">Cost & Success Rate</div>
+            <div class="field"><strong>Cost in India:</strong> {{ data.cost_india }}</div>
+            <div class="field"><strong>Cost in USA:</strong> {{ data.cost_usa }}</div>
+            <div class="field"><strong>Success Rate:</strong> {{ data.success_rate }}</div>
+        </div>
+        {% elif error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        &copy; 2025  All rights reserved.
+    </div>
+
+</body>
+</html>
