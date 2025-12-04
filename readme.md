@@ -3,9 +3,9 @@
 # Brain Stroke Detection Web App
 
 > **Short Description:**
-> A Flask-based web application that loads trained ML/DL models to predict brain stroke from uploaded images. It stores patient records in CSV and uses MySQL for user authentication, providing a web interface for both users and admins.
+> Brain Stroke Detection System using Flask, TensorFlow, EfficientNetB0, OpenCV, MySQL, Pandas, Grad-CAM, and Matplotlib. Developed a CT-scan based diagnostic web app with a 2-stage model pipeline (Unknown filter + Stroke classifier). Supports patient/admin panels, stores records in CSV, and provides MySQL-based user authentication.
 
-
+---
 
 ## Table of Contents
 
@@ -26,10 +26,14 @@
 
 This Flask web application:
 
-* Accepts brain scan image uploads via a web interface.
-* Uses prediction functions (`pred_skin_disease` and `pred_skin_disease3`) from `model_predict2.py` and `model_predict2un.py`.
-* Stores prediction results and patient information in `patient_data.csv` and MySQL (`ddbb`) for user authentication.
-* Provides registration/login pages and pages to display prediction results.
+* This Flask web application:
+* Accepts brain CT-scan image uploads via a web interface.
+* Uses a 2-stage model pipeline: Unknown filter + Stroke classifier (TensorFlow EfficientNetB0).
+* Implements advanced preprocessing: Grayscale conversion, CLAHE, Gaussian blur, Canny edges, and red edge-overlay for better feature extraction.
+* Integrates Grad-CAM Explainable AI to generate heatmaps showing CT regions influencing predictions.
+* Stores patient records in patient_data.csv and manages user authentication via MySQL (ddbb).
+* Provides Patient/Admin panels: Patients can upload scans and get a diagnosis; admins can retrieve patient history using Patient ID.
+* Displays visual performance metrics including Accuracy, Precision, Recall, and F1-Score using Matplotlib.
 
 > **Note:** The main Flask file is `app.py`. Run the app with:
 >
