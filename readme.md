@@ -1,11 +1,11 @@
----
+
 
 # Brain Stroke Detection Web App
 
 > **Short Description:**
 > A Flask-based web application that loads trained ML/DL models to predict brain stroke from uploaded images. It stores patient records in CSV and uses MySQL for user authentication, providing a web interface for both users and admins.
 
----
+
 
 ## Table of Contents
 
