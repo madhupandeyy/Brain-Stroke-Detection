@@ -1,19 +1,21 @@
+---
 
-
-````markdown
 # Brain Stroke Detection Web App
 
-> **Short description:** A Flask-based web application that loads trained ML/DL models to predict brain stroke from uploaded images. It stores patient records in CSV and uses MySQL for user authentication, providing a web UI for users and admins.
+> **Short Description:**
+> A Flask-based web application that loads trained ML/DL models to predict brain stroke from uploaded images. It stores patient records in CSV and uses MySQL for user authentication, providing a web interface for both users and admins.
 
 ---
 
 ## Table of Contents
+
 1. [Project Overview](#project-overview)
 2. [Prerequisites](#prerequisites)
 3. [Detailed Installation Steps](#detailed-installation-steps)
-   - Environment Setup (Anaconda)
-   - Install Dependencies
-   - MySQL Setup (XAMPP)
+
+   * Environment Setup (Anaconda)
+   * Install Dependencies
+   * MySQL Setup (XAMPP)
 4. [Files & Folders the App Expects](#files--folders-the-app-expects)
 5. [Run the Project](#run-the-project)
 6. [Project Folder Structure](#project-folder-structure)
@@ -21,26 +23,34 @@
 ---
 
 ## Project Overview
-This Flask web application:  
-- Accepts brain scan image uploads through a web interface.  
-- Uses prediction functions (`pred_skin_disease`, `pred_skin_disease3`) from model modules (`model_predict2.py`, `model_predict2un.py`).  
-- Stores prediction results and patient information in `patient_data.csv` and MySQL (`ddbb`) for user authentication.  
-- Provides registration/login pages and pages to display prediction results.
 
-> **Note:** The main Flask file is `app.py` and the app starts with `python app.py`.
+This Flask web application:
+
+* Accepts brain scan image uploads via a web interface.
+* Uses prediction functions (`pred_skin_disease` and `pred_skin_disease3`) from `model_predict2.py` and `model_predict2un.py`.
+* Stores prediction results and patient information in `patient_data.csv` and MySQL (`ddbb`) for user authentication.
+* Provides registration/login pages and pages to display prediction results.
+
+> **Note:** The main Flask file is `app.py`. Run the app with:
+>
+> ```bash
+> python app.py
+> ```
 
 ---
 
 ## Prerequisites
-- Anaconda (recommended) or Python 3.10+ installed.  
-- XAMPP (for MySQL + Apache) installed.  
-- Basic knowledge of terminal / Anaconda Prompt.
+
+* **Python** 3.10+ (Anaconda recommended)
+* **XAMPP** (for MySQL + Apache)
+* Basic knowledge of terminal / Anaconda Prompt
 
 ---
 
 ## Detailed Installation Steps
 
 ### 1) Environment Setup (Anaconda)
+
 ```bash
 conda create -n leaf_disease python=3.10.12 -y
 conda activate leaf_disease
@@ -49,7 +59,9 @@ conda activate leaf_disease
 pip install ipykernel
 python -m ipykernel install --user --name leaf_disease --display-name "leaf_disease"
 conda install jupyter -y
-````
+```
+
+---
 
 ### 2) Install Dependencies
 
@@ -90,6 +102,8 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+---
+
 ### 3) MySQL Setup (XAMPP)
 
 1. Start **Apache** and **MySQL** in XAMPP.
@@ -108,20 +122,20 @@ CREATE TABLE user_register (
 INSERT INTO user_register (user, password) VALUES ('test@example.com','password123');
 ```
 
-> The app will automatically create/update `patient_data.csv` when it runs, so no manual CSV creation is needed.
+> The app automatically creates/updates `patient_data.csv` when it runs, so no manual CSV creation is needed.
 
 ---
 
 ## Files & Folders the App Expects
 
-* `app.py` (main Flask file)
-* `model_predict2.py` (`pred_skin_disease` function)
-* `model_predict2un.py` (`pred_skin_disease3` function)
-* `templates/` (HTML files like `home1.html`, `login44.html`, `register44.html`, `index.html`, `patient_info.html`, `rust-result.html`, etc.)
-* `static/` (CSS, JS, images)
-* `patient_data.csv` (auto-created by the app)
-* `name.pkl` (stores current patient ID/name)
-* Saved ML/DL models that `model_predict2.py` / `model_predict2un.py` load
+* `app.py` – main Flask file
+* `model_predict2.py` – contains `pred_skin_disease` function
+* `model_predict2un.py` – contains `pred_skin_disease3` function
+* `templates/` – HTML files: `home1.html`, `login44.html`, `register44.html`, `index.html`, `patient_info.html`, `rust-result.html`, etc.
+* `static/` – CSS, JS, images
+* `patient_data.csv` – auto-created by the app
+* `name.pkl` – stores current patient ID/name
+* Saved ML/DL models required by `model_predict2.py` / `model_predict2un.py`
 
 ---
 
@@ -133,8 +147,8 @@ INSERT INTO user_register (user, password) VALUES ('test@example.com','password1
 conda activate leaf_disease
 ```
 
-2. Start XAMPP and ensure `ddbb` database exists.
-3. Run Flask:
+2. Start XAMPP and ensure the `ddbb` database exists.
+3. Run the Flask app:
 
 ```bash
 python app.py
@@ -147,7 +161,7 @@ python app.py
 ## Project Folder Structure
 
 ```
-APPLICATION_FINALISED_BRAIN_SRTOKE_UNKNOWN/
+APPLICATION_FINALISED_BRAIN_STROKE_UNKNOWN/
 │
 ├── notebooks/
 │   ├── brain_stroke_model.h5
@@ -175,7 +189,6 @@ APPLICATION_FINALISED_BRAIN_SRTOKE_UNKNOWN/
 ├── patient_data - Copy.csv
 ├── patient_predictions.csv
 ├── readme.md
-└── unknown-main-code.ipynb
 ```
 
 ---
